@@ -391,10 +391,12 @@ ul { list-style: none; }
 }
 
 .hero-content {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: clamp(2rem, 5vw, 5rem);
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
   position: relative;
   z-index: 1;
 }
@@ -423,8 +425,9 @@ ul { list-style: none; }
 }
 
 .hero-title {
-  display: flex;
+  display: inline-flex;
   align-items: baseline;
+  justify-content: center;
   gap: 0.4rem;
   font-size: clamp(1rem, 2.2vw, 1.3rem);
   font-weight: 400;
@@ -447,7 +450,9 @@ ul { list-style: none; }
 .hero-description {
   color: var(--clr-text-muted);
   font-size: 1rem;
-  max-width: 480px;
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 2rem;
   line-height: 1.8;
 }
@@ -456,6 +461,7 @@ ul { list-style: none; }
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
+  justify-content: center;
   margin-bottom: 2.25rem;
 }
 
@@ -464,6 +470,7 @@ ul { list-style: none; }
   display: flex;
   gap: 0.5rem;
   align-items: center;
+  justify-content: center;
 }
 .social-link {
   width: 38px;
@@ -585,56 +592,15 @@ ul { list-style: none; }
 .about { background: var(--clr-bg-2); }
 
 .about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: clamp(2.5rem, 6vw, 5rem);
-  align-items: start;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.about-image-wrap { position: relative; }
-
-/* Image card — clean rectangle, no tinted gradient fill */
-.about-image-card {
-  position: relative;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  aspect-ratio: 4/5;
-  background: var(--clr-bg-card);
-  border: 1px solid var(--clr-border-2);
-}
-
-.about-img-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  color: var(--clr-text-dim);
-  font-size: 0.82rem;
-  /* Flat fill — no cyan gradient */
-  background: var(--clr-bg-card);
-}
-
-/* Corner accent → left edge bar instead of overlapping box */
-.about-img-accent {
-  position: absolute;
-  top: 0;
-  left: -1px;
-  width: 2px;
-  height: 48px;
-  background: var(--clr-primary);
-  border-radius: 0;
-  opacity: 1;
-  pointer-events: none;
-}
-
-/* Stats — horizontal row of numbers, not equal-weight cards */
+/* Stats — horizontal row of numbers, placed below info-grid */
 .about-stats {
   display: flex;
   gap: 0;
-  margin-top: 1.5rem;
+  margin: 1.75rem 0 2rem;
   border-top: 1px solid var(--clr-border-2);
   padding-top: 1.25rem;
 }
@@ -846,6 +812,9 @@ ul { list-style: none; }
   border-radius: var(--radius-md);
   overflow: hidden;
   transition: all var(--transition);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .project-card:hover {
   border-color: var(--clr-primary);
@@ -912,7 +881,12 @@ ul { list-style: none; }
   color: #0c0e14;
 }
 
-.project-body { padding: 1.5rem; }
+.project-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
 
 .project-tags {
   display: flex;
@@ -953,6 +927,7 @@ ul { list-style: none; }
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+  flex-grow: 1;
 }
 .project-desc-list li {
   font-size: 0.85rem;
@@ -1012,14 +987,9 @@ ul { list-style: none; }
 ══════════════════════════════════════════════════ */
 .contact { background: var(--clr-bg); }
 
-/* ══════════════════════════════════════════════════
-   CONTACT
-══════════════════════════════════════════════════ */
-.contact { background: var(--clr-bg); }
-
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1.4fr;
+  grid-template-columns: 1.15fr 1fr;
   gap: clamp(2rem, 5vw, 4rem);
   align-items: start;
 }
@@ -1080,7 +1050,7 @@ a.contact-detail-value:hover { color: var(--clr-primary); }
   background: var(--clr-bg-card);
   border: 1px solid var(--clr-border-2);
   border-radius: var(--radius-md);
-  padding: clamp(1.5rem, 4vw, 2.5rem);
+  padding: clamp(1.25rem, 3.5vw, 2rem);
 }
 
 .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
@@ -1260,18 +1230,8 @@ a.contact-detail-value:hover { color: var(--clr-primary); }
    RESPONSIVE
 ══════════════════════════════════════════════════ */
 @media (max-width: 900px) {
-  .hero-content { grid-template-columns: 1fr; text-align: center; }
-  .hero-text { order: 2; }
-  .hero-visual { order: 1; display: flex; justify-content: center; }
-  .avatar-container { width: 220px; height: 220px; }
-  .badge-1 { left: -20px; bottom: -5px; }
-  .badge-2 { right: -15px; top: 5px; }
   .hero-description { margin: 0 auto 2rem; }
-  .hero-actions { justify-content: center; }
-  .hero-socials { justify-content: center; }
 
-  .about-grid { grid-template-columns: 1fr; }
-  .about-image-card { aspect-ratio: 16/9; max-height: 280px; }
   .about-stats { border-top-color: var(--clr-border-2); }
 
   .skills-categories-grid { grid-template-columns: 1fr; }
