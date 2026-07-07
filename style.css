@@ -231,15 +231,64 @@ ul { list-style: none; }
 }
 
 .nav-logo {
-  font-family: var(--font-mono);
-  font-size: 1.15rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--clr-text);
-  transition: color var(--transition);
+  display: inline-flex;
+  align-items: center;
+  perspective: 500px;
+  text-decoration: none;
 }
-.nav-logo:hover { color: var(--clr-primary); }
-.logo-bracket { color: var(--clr-primary); opacity: 0.8; }
+
+.logo-3d-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.logo-3d-letter {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--clr-text);
+  position: relative;
+  transform-style: preserve-3d;
+  display: inline-block;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  /* Extrusion text-shadow depth */
+  text-shadow: 
+    -0.5px 0.5px 0 rgba(79, 156, 249, 0.35),
+    -1px 1px 0 rgba(79, 156, 249, 0.25),
+    -1.5px 1.5px 0 rgba(79, 156, 249, 0.15),
+    -2px 2px 0 rgba(0, 0, 0, 0.4);
+}
+
+.logo-3d-letter::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--clr-primary);
+  transform: translateZ(-2px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.logo-3d-letter::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: rgba(79, 156, 249, 0.2);
+  transform: translateZ(-4px);
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Fallback auto hover transform in CSS (will be augmented by JS dynamic tilt) */
+.nav-logo:hover .logo-3d-container {
+  transform: rotateX(20deg) rotateY(-20deg) translateZ(4px);
+}
 
 .nav-menu {
   display: flex;
@@ -316,6 +365,12 @@ ul { list-style: none; }
   );
   background-size: 32px 32px;
   mask-image: radial-gradient(ellipse 70% 80% at 50% 40%, black 20%, transparent 80%);
+  animation: grid-shimmer 12s ease-in-out infinite alternate;
+}
+
+@keyframes grid-shimmer {
+  0% { opacity: 0.6; }
+  100% { opacity: 1.0; }
 }
 
 /* Glow blob — static, very faint, single-color. No animation. */
@@ -465,6 +520,21 @@ ul { list-style: none; }
   width: 44px;
   height: 2px;
   background: var(--clr-primary);
+}
+
+.avatar-placeholder svg, 
+.avatar-placeholder p {
+  transition: transform var(--transition), color var(--transition);
+}
+
+.avatar-container:hover .avatar-placeholder svg {
+  transform: scale(1.06) translateY(-4px);
+  color: var(--clr-primary);
+}
+
+.avatar-container:hover .avatar-placeholder p {
+  transform: translateY(2px);
+  color: var(--clr-text-muted);
 }
 
 /* Badges — static chips, no float animation */

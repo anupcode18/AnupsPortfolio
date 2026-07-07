@@ -474,3 +474,34 @@ const $$ = (sel) => document.querySelectorAll(sel);
     });
   });
 })();
+
+// ══════════════════════════════════════════════════════
+// 13. 3D LOGO DYNAMIC MOUSE TILT EFFECT
+// ══════════════════════════════════════════════════════
+(function initLogo3dTilt() {
+  const logos = $$('#nav-logo-3d, #footer-logo-3d');
+
+  logos.forEach(logo => {
+    const container = logo.querySelector('.logo-3d-container');
+    if (!container) return;
+
+    logo.addEventListener('mousemove', (e) => {
+      const rect = logo.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const cx = rect.width / 2;
+      const cy = rect.height / 2;
+      
+      const rotX = ((y - cy) / cy) * -25;
+      const rotY = ((x - cx) / cx) * 25;
+      
+      container.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(4px)`;
+      container.style.transition = 'transform 0.05s linear';
+    });
+
+    logo.addEventListener('mouseleave', () => {
+      container.style.transform = '';
+      container.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+    });
+  });
+})();
