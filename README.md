@@ -2,9 +2,16 @@
 
 A responsive, single-page personal portfolio website built with **pure HTML, CSS, and JavaScript** — no frameworks, no build step, zero dependencies.
 
-🔗 **Live Site:** *(GitHub Pages URL — coming soon)*
+🔗 **Live Site:** [anup-agrawal.vercel.app](https://anup-agrawal.vercel.app/)
 🔗 **GitHub:** [github.com/anupcode18](https://github.com/anupcode18)
 🔗 **LinkedIn:** [linkedin.com/in/anup-agrawal18](https://www.linkedin.com/in/anup-agrawal18)
+
+---
+
+## 🖼 Preview
+
+<!-- Add a screenshot of the live site here so visitors see the design before clicking the link -->
+<!-- Example: ![Portfolio preview](assets/preview.png) -->
 
 ---
 
@@ -29,13 +36,13 @@ A responsive, single-page personal portfolio website built with **pure HTML, CSS
 
 ## 🛠 Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Markup | HTML5 (semantic) |
-| Styling | Vanilla CSS3 (custom properties, grid, flexbox, animations) |
-| Scripting | Vanilla JavaScript ES6+ (no frameworks) |
-| Fonts | Google Fonts — Inter, Space Grotesk, JetBrains Mono |
-| Deployment | GitHub Pages (static) |
+| Layer      | Technology                                                  |
+| ---------- | ------------------------------------------------------------ |
+| Markup     | HTML5 (semantic)                                              |
+| Styling    | Vanilla CSS3 (custom properties, grid, flexbox, animations)   |
+| Scripting  | Vanilla JavaScript ES6+ (no frameworks)                       |
+| Fonts      | Google Fonts — Inter, Space Grotesk, JetBrains Mono            |
+| Deployment | Vercel                                                         |
 
 ---
 
@@ -47,7 +54,7 @@ AnupsPortfolio/
 ├── style.css         # All styles, animations, responsive design
 ├── script.js         # Typewriter, scroll reveals, particles, form validation, tilt
 ├── assets/
-│   └── resume.pdf    # ← Drop your resume PDF here
+│   └── resume.pdf    # Resume PDF served for download
 └── README.md
 ```
 
@@ -65,11 +72,23 @@ End-to-end voter guidance web app. Gemini AI explains voting steps in plain lang
 
 ---
 
-## 🌐 Deploy to GitHub Pages
+## 🌐 Deployment
 
-1. Push this repo to GitHub (already done if you're reading this!)
+The live site is deployed on **Vercel**, connected directly to this repository — every push to `main` auto-deploys.
+
+To deploy your own copy:
+1. Fork/clone this repo
+2. Import it into [Vercel](https://vercel.com/new) as a static project
+3. Deploy — no build command needed
+
+<details>
+<summary>Alternative: Deploy to GitHub Pages</summary>
+
+1. Push this repo to GitHub
 2. Go to **Settings → Pages → Source: Deploy from a branch → `main` / `/ (root)`**
 3. Your site will be live at `https://anupcode18.github.io/AnupsPortfolio/`
+
+</details>
 
 ---
 
@@ -77,11 +96,17 @@ End-to-end voter guidance web app. Gemini AI explains voting steps in plain lang
 
 No build step needed — just open `index.html` in a browser, or:
 
-```bash
+```
 npx serve .
 # or
 python -m http.server 8080
 ```
+
+---
+
+## 🗒 Known Limitations
+
+- The contact form currently validates input client-side but does not send messages to a real inbox yet. Connecting it to a service like [Formspree](https://formspree.io/) or [EmailJS](https://www.emailjs.com/) is a planned next step.
 
 ---
 
